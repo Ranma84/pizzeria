@@ -14,7 +14,4 @@
             <link rel="stylesheet" href="<?= BASE_URL.$valor ?>">    
     <?php }   ?>       
   <?php endif; ?>
-
-
-
 </head>

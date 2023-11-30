@@ -26,5 +26,3 @@ class LoginController
         header('Location: ' . BASE_URL);
     }
 }
-
-?>

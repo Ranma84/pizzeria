@@ -6,7 +6,7 @@ class UserController
 
     public function __construct()
     {
-        require_once '../modelo/User_model.php';
+        require_once 'modelo/User_model.php';
         $this->userModel = new User_model();
       
     }
@@ -14,18 +14,38 @@ class UserController
     public function index()
     {
         $users = $this->userModel->getAllUsers();
-        include '../views/users/index.php';
+        $js=array('asset/plugins/datatables/jquery.dataTables.min.js',
+        'asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js',
+        'asset/plugins/datatables-responsive/js/dataTables.responsive.min.js',
+        'asset/plugins/datatables-responsive/js/responsive.bootstrap4.min.js',
+        'asset/plugins/datatables-buttons/js/dataTables.buttons.min.js',
+        'asset/plugins/datatables-buttons/js/buttons.bootstrap4.min.js',
+        'asset/plugins/jszip/jszip.min.js',
+        'asset/plugins/pdfmake/pdfmake.min.js',
+        'asset/plugins/pdfmake/vfs_fonts.js',
+        'asset/plugins/datatables-buttons/js/buttons.html5.min.js',
+        'asset/plugins/datatables-buttons/js/buttons.print.min.js',
+        'asset/plugins/datatables-buttons/js/buttons.colVis.min.js',
+        'asset/js/tabla.js');
+
+
+        $css=array('asset/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css',
+    'asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css',
+'asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css');
+
+
+        include 'views/users/index.php';
     }
 
     public function show($userId)
     {
         $user = $this->userModel->getUserById($userId);
-        include '../views/users/show.php';
+        include 'views/users/show.php';
     }
 
     public function create()
     {
-        include '../views/users/create.php';
+        include 'views/users/create.php';
     }
 
     public function store()
@@ -44,7 +64,7 @@ class UserController
     public function edit($userId)
     {
         $user = $this->userModel->getUserById($userId);
-        include '../views/users/edit.php';
+        include 'views/users/edit.php';
     }
 
     public function update($userId)

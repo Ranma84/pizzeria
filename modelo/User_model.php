@@ -6,7 +6,7 @@ class User_model
 
     public function __construct()
     {
-        require_once '../db.php';
+        require_once 'db.php';
         $this->db = new Conexion();
     }
 

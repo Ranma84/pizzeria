@@ -10,58 +10,35 @@ define('HOST', $host);
 define('DDB_NAME', $db_name);
 define('USERNAME', $username);
 define('PASSWORD', $password);
+define('CHARSET', $charset);
 
-function conectar()
+class Conexion
 {
-    $link = new mysqli(HOST, USERNAME, PASSWORD, DDB_NAME);
-    if ($link->connect_error) {
-        die("Error de conexión: " . $link->connect_error);
-    }
-    $link->set_charset('utf8');
-    return $link;
-}
+    private $link;
 
-
-function desconectar($link)
-{
-    if ($link) {
-        $link->close();
-    }
-}
-
-function ejecutar($query)
-{
-    $conexion = conectar();
-    try {
-        if (!$conexion) {
-            throw new Exception("Error de conexión.");
+    public function __construct()
+    {
+        $this->link = new mysqli(HOST, USERNAME, PASSWORD, DDB_NAME);
+        if ($this->link->connect_error) {
+            die("Error de conexión: " . $this->link->connect_error);
         }
+        $this->link->set_charset(CHARSET);
+    }
 
-        $resultado = $conexion->query($query);
+    public function ejecutar($query)
+    {
+        $resultado = $this->link->query($query);
         if (!$resultado) {
-            throw new Exception("Error en la consulta: " . $conexion->error);
+            die("Error en la consulta: " . $this->link->error);
         }
-
         return true;
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-        return false;
-    } finally {
-        desconectar($conexion);
     }
-}
 
-function seleccionar($query)
-{
-    $conexion = conectar();
-    try {
-        if (!$conexion) {
-            throw new Exception("Error de conexión.");
-        }
-
-        $resultado = $conexion->query($query);
+    public function seleccionar($query)
+    {
+        $resultado = $this->link->query($query);
         if (!$resultado) {
-            throw new Exception("Error en la consulta: " . $conexion->error);
+            die("Error en la consulta: " . $this->link->error);
         }
 
         $data = [];
@@ -70,34 +47,22 @@ function seleccionar($query)
         }
 
         return $data;
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-        return [];
-    } finally {
-        desconectar($conexion);
     }
-}
 
-function seleccionar_id($query)
-{
-    $conexion = conectar();
-    try {
-        if (!$conexion) {
-            throw new Exception("Error de conexión.");
-        }
-
-        $resultado = $conexion->query($query);
+    public function seleccionar_id($query)
+    {
+        $resultado = $this->link->query($query);
         if (!$resultado) {
-            throw new Exception("Error en la consulta: " . $conexion->error);
+            die("Error en la consulta: " . $this->link->error);
         }
-
         $row = $resultado->fetch_assoc();
-
         return $row;
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-        return null;
-    } finally {
-        desconectar($conexion);
+    }
+
+    public function __destruct()
+    {
+        if ($this->link) {
+            $this->link->close();
+        }
     }
 }
