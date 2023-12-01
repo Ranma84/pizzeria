@@ -33,7 +33,6 @@ class UserController
     'asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css',
 'asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css');
 
-
         include 'views/users/index.php';
     }
 
