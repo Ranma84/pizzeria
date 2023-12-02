@@ -33,6 +33,12 @@ class User_model
         return $this->db->ejecutar($query);
     }
 
+    public function getUser($username)
+    {
+        $query = "SELECT users.username,users.password,roles.name FROM users INNER JOIN roles ON users.role_id=roles.id WHERE username='$username'";
+        return $this->db->seleccionar_id($query);
+    }
+
     public function getUserById($id)
     {
         $query = "SELECT * FROM users WHERE id=$id";
