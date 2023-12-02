@@ -47,7 +47,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <div class="logo me-auto">
-        <h1><a href="index.php">Pizzalicious Express</a></h1>
+        <h1><a href="index.html">Pizzalicious Express</a></h1>
       </div>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
@@ -80,7 +80,7 @@
       <div class="container">
         <h2 style="text-align: center;">Agregar Producto (Pizza)</h2>
     
-        <form action="autenticacion.php" method="post" style="max-width: 400px; margin: auto;">
+        <form action="validacion.php" method="post" style="max-width: 400px; margin: auto;">
           <label for="nombre">Nombre de la Pizza:</label>
           <input type="text" name="nombre" required style="width: 100%; box-sizing: border-box; padding: 8px;">
     
