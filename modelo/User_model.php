@@ -36,7 +36,7 @@ class User_model
 
     public function getAllUsers()
     {
-        $query = "SELECT * FROM users";
+        $query = "SELECT users.id,users.username,roles.name FROM users INNER JOIN roles ON users.role_id=roles.id";
         return $this->db->seleccionar($query);
     }
 }

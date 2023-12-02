@@ -13,8 +13,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-
 <script src="<?=  BASE_URL . 'asset/plugins/jquery/jquery.min.js'; ?>"></script>
         <script src="<?=  BASE_URL . 'asset/plugins/bootstrap/js/bootstrap.bundle.min.js'; ?>"></script>
         <script src="<?=  BASE_URL . 'asset/js/adminlte.min.js'; ?>"></script>

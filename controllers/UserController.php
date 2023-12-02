@@ -90,10 +90,11 @@ $userController = new UserController();
 
 // Decide la acción basada en la solicitud del usuario
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+$userId = isset($_GET['userId']) ? $_GET['userId'] : '';
 
 // Ejecuta la acción correspondiente
 if (method_exists($userController, $action)) {
-    $userController->$action();
+    $userController->$action($userId);
 } else {
     // Maneja acciones no válidas
     echo 'Acción no válida';

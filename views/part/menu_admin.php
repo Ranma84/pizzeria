@@ -41,13 +41,13 @@
             </a>            
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=  BASE_URL ; ?>/index.php?controller=ProductController&action=store" class="nav-link">
+                <a href="<?=  BASE_URL ; ?>/index.php?controller=UserController&action=index" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lista</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=  BASE_URL ; ?>/index.php?controller=ProductController&action=create" class="nav-link">
+                <a href="<?=  BASE_URL ; ?>/index.php?controller=UserController&action=create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Añadir</p>
                 </a>
