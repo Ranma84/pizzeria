@@ -47,11 +47,11 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <div class="logo me-auto">
-        <h1><a href="index.html">Pizzalicious Express</a></h1>
+        <h1><a href="#">Pizzalicious Express</a></h1>
       </div>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
-          <li><a class="nav-link scrollto " href="index.php">Inicio</a></li>
+          <li><a class="nav-link scrollto " href="#">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#about">Acerca de</a></li>
           <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
           <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>

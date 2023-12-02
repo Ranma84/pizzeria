@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descripcion = $conn->real_escape_string($descripcion);
     $precio = $conn->real_escape_string($precio);
 
-    $sql = "INSERT INTO products ('name', 'description', price) VALUES ('$nombre', '$descripcion', '$precio')";
+    $sql = "INSERT INTO products (name, description, price) VALUES ('$nombre', '$descripcion', '$precio')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: producto_agregado.php?nombre=$nombre&descripcion=$descripcion&precio=$precio");
