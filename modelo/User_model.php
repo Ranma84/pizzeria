@@ -18,7 +18,12 @@ class User_model
 
     public function updateUser($id, $userData)
     {
-        $query = "UPDATE users SET username='$userData[username]', password='$userData[password]', role_id=$userData[role_id] WHERE id=$id";
+        $query = '';
+        if(isset($userData['password']) && !empty($userData['password'])){ 
+            $query = "UPDATE users SET username='$userData[username]', password='$userData[password]', role_id=$userData[role_id] WHERE id=$id";
+        }else{
+            $query = "UPDATE users SET username='$userData[username]', role_id=$userData[role_id] WHERE id=$id";
+        }
         return $this->db->ejecutar($query);
     }
 
@@ -39,4 +44,13 @@ class User_model
         $query = "SELECT users.id,users.username,roles.name FROM users INNER JOIN roles ON users.role_id=roles.id";
         return $this->db->seleccionar($query);
     }
+
+    public function getAllRol()
+    {
+        $query = "SELECT * from roles";
+        return $this->db->seleccionar($query);
+    }
+    
+
+
 }

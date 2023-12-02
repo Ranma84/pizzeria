@@ -38,7 +38,7 @@
     <section class="content">
       <div class="container-fluid">
       <div class="box-tools">
-                    <a href="<?=  BASE_URL ; ?>/index.php?controller=UserController&action=create" class="btn btn-success btn-sm">Agregar</a> 
+                    <a href="<?=  BASE_URL ; ?>index.php?controller=UserController&action=create" class="btn btn-success btn-sm">Agregar</a> 
               </div>
         <div class="row">
           <div class="col-12">
@@ -58,20 +58,21 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
+                  
                     <?php foreach ($users as $clave => $valor){
                      ?> 
+                     <tr>
                      <td><?= $valor['id'] ?></td> 
                      <td><?= $valor['username'] ?></td>
                      <td><?= $valor['name'] ?></td>
                      <td>
-                        <a href="<?=  BASE_URL ; ?>/index.php?controller=UserController&action=show&userId=<?= $valor['id'] ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Editar</a> 
-                        <a href="<?=  BASE_URL ; ?>/index.php?controller=UserController&action=delete&userId=<?= $valor['id'] ?>"" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Borrar</a>
+                        <a href="<?=  BASE_URL ; ?>index.php?controller=UserController&action=show&userId=<?= $valor['id'] ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Editar</a> 
+                        <a href="<?=  BASE_URL ; ?>index.php?controller=UserController&action=delete&userId=<?= $valor['id'] ?>"" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Borrar</a>
                       </td>
+                      </tr>
                      <?php    
                     }
                     ?>
-                  </tr>
                   </tfoot>
                 </table>
               </div>

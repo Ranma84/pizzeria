@@ -47,26 +47,36 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm">
+              <form id="CreateUsuario" action="<?=  BASE_URL ; ?>index.php?controller=UserController&action=store" method="post" >
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Ingresa Usuario" required >
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required >
                   </div>
-                  <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                    </div>
-                  </div>
+              
+                  <div class="form-group">
+						<label for="role_id" class="control-label">Role</label>
+						<div class="form-group">
+							<select name="role_id" class="form-control">
+								<option value="">seleccionar rol</option>
+								<?php 
+								foreach($all_roles as $role)
+								{
+									echo '<option value="'.$role['id'].'" >'.$role['name'].'</option>';
+								} 
+								?>
+							</select>
+						</div>
+					</div>
+
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
               </form>
             </div>

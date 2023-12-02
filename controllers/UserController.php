@@ -14,6 +14,7 @@ class UserController
     public function index()
     {
         $users = $this->userModel->getAllUsers();
+       
         $js=array('asset/plugins/datatables/jquery.dataTables.min.js',
         'asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js',
         'asset/plugins/datatables-responsive/js/dataTables.responsive.min.js',
@@ -28,7 +29,6 @@ class UserController
         'asset/plugins/datatables-buttons/js/buttons.colVis.min.js',
         'asset/js/tabla.js');
 
-
         $css=array('asset/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css',
     'asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css',
 'asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css');
@@ -39,11 +39,13 @@ class UserController
     public function show($userId)
     {
         $user = $this->userModel->getUserById($userId);
+        $all_roles = $this->userModel->getAllRol();
         include 'views/users/show.php';
     }
 
     public function create()
     {
+        $all_roles = $this->userModel->getAllRol();
         include 'views/users/create.php';
     }
 
@@ -57,31 +59,34 @@ class UserController
         ];
 
         $this->userModel->insertUser($userData);
-        header('Location: index.php');
+        header('Location: index.php?controller=UserController');
     }
 
-    public function edit($userId)
-    {
-        $user = $this->userModel->getUserById($userId);
-        include 'views/users/edit.php';
-    }
 
     public function update($userId)
     {
-        // Validar y procesar el formulario de edición
-        $userData = [
-            'username' => $_POST['username'],
-            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-            'role_id' => $_POST['role_id']
-        ];
+        $userData = null;
+        if(isset($_POST['password']) && !empty($_POST['password'])){ 
+            $userData = [
+                'username' => $_POST['username'],
+                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                'role_id' => $_POST['role_id']
+            ];
+        }
+        else{
+            $userData = [
+                'username' => $_POST['username'],
+                'role_id' => $_POST['role_id']
+            ];
+        }
         $this->userModel->updateUser($userId, $userData);
-        header('Location: index.php');
+        header('Location: index.php?controller=UserController');
     }
 
     public function delete($userId)
     {
         $this->userModel->deleteUser($userId);
-        header('Location: index.php');
+        header('Location: index.php?controller=UserController');
     }
 }
 
@@ -90,6 +95,8 @@ $userController = new UserController();
 
 // Decide la acción basada en la solicitud del usuario
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+
+// ID de la clase
 $userId = isset($_GET['userId']) ? $_GET['userId'] : '';
 
 // Ejecuta la acción correspondiente
